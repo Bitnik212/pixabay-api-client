@@ -8,6 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import moe.nikolay.nwcode.databinding.ActivityMainBinding
+import moe.nikolay.nwcode.repository.api.pixaby.PixabayAPI
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,5 +29,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        testAPI()
+    }
+
+    private fun testAPI() {
+        val api = PixabayAPI()
+        api.searchImage()
     }
 }
