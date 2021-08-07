@@ -9,17 +9,20 @@
         android:id="@+id/navigation_home"
         android:name="moe.nikolay.nwcode.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_categoryPhotosFragment"
+            app:destination="@id/categoryPhotosFragment" />
+    </fragment>
+
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="moe.nikolay.nwcode.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
+        android:id="@+id/navigation_settings"
+        android:name="moe.nikolay.nwcode.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings" />
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="moe.nikolay.nwcode.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/categoryPhotosFragment"
+        android:name="moe.nikolay.nwcode.ui.home.category_photos.CategoryPhotosFragment"
+        android:label="CategoryPhotosFragment" />
 </navigation>
