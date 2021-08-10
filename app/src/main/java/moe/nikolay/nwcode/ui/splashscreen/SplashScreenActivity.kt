@@ -9,7 +9,7 @@ import moe.nikolay.nwcode.R
 
 class SplashScreenActivity : AppCompatActivity() {
     private var mDelayHandler: Handler? = null
-    private val SPLASH_DELAY: Long = 3000
+    private val SPLASH_DELAY: Long = 1000
 
     internal val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
