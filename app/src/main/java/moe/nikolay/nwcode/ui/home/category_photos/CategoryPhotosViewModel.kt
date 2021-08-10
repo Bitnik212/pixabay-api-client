@@ -16,8 +16,12 @@ class CategoryPhotosViewModel (application: Application) : AndroidViewModel(appl
     private val repository = ImagesRepository()
     val imagesByCategory: MutableLiveData<List<ImageModel.Model>?> = MutableLiveData(null)
 
-    fun initImagesByCategory(category: String) {
-        repository.getImageListBySearch(query = category, callback = object : ImagesRepository.ImageListCallback {
+    fun initImagesByCategory(category: String, page: Int, count: Int) {
+        repository.getImageListBySearch(
+            query = category,
+            page = page,
+            count = count,
+            callback = object : ImagesRepository.ImageListCallback {
             override fun onSuccess(data: List<ImageModel.Model>) {
                 imagesByCategory.value = data
             }

@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import moe.nikolay.nwcode.PaginationScrollListener
 import moe.nikolay.nwcode.databinding.FragmentCategoryPhotosBinding
 import moe.nikolay.nwcode.repository.api.pixaby.models.PixabayImagesModel
 import moe.nikolay.nwcode.repository.images.models.ImageModel
@@ -25,6 +27,8 @@ class CategoryPhotosFragment : Fragment() {
     private lateinit var category: PixabayImagesModel.Categories
     private lateinit var adapter: ImagesAdapter
     private lateinit var navCantroller: NavController
+    private var mNowPage: Int = 1
+    private val imagesCount = 20
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -36,7 +40,7 @@ class CategoryPhotosFragment : Fragment() {
         navCantroller = findNavController()
         categoryId = arguments?.getInt("categoryId")
         category = getCategoryById(categoryId!!)
-        viewModel.initImagesByCategory(category = category.category_en)
+        viewModel.initImagesByCategory(category = category.category_en, page = mNowPage, count = imagesCount)
         adapter = ImagesAdapter()
 
         activity?.actionBar?.title = category.category_en
@@ -65,9 +69,31 @@ class CategoryPhotosFragment : Fragment() {
 
         adapter.callback = object : ImagesAdapter.Callback {
             override fun onClick(image: ImageModel.Model) {
-                TODO("Not yet implemented")
+                Log.d(TAG, "onClick: to large image")
             }
         }
+
+        recyclerView.addOnScrollListener(object : PaginationScrollListener.Adapter(layoutManager) {
+//            override fun isLastPage(): Boolean {
+//                Log.d(TAG, "isLastPage")
+//                return false
+//            }
+
+            override fun isFirstElement() {
+                mNowPage = 1
+            }
+
+//            override fun isLoading(): Boolean {
+////                Log.d(TAG, "isLoading")
+//                return false
+//            }
+
+            override fun loadMoreItems() {
+                mNowPage++
+                viewModel.initImagesByCategory(category = category.category_en, page = mNowPage, count = imagesCount)
+                Log.d(TAG, "loadMoreItems")
+            }
+        })
 
         return binding.root
     }
