@@ -37,9 +37,11 @@ class ImagesRepository {
         return localizedCategories
     }
 
-    fun getImageListBySearch(query: String, callback: ImageListCallback) {
+    fun getImageListBySearch(query: String, page: Int = 1, count: Int = 20, callback: ImageListCallback) {
         api.searchImage(request = PixabayImagesModel.Request.SearchImages(
             q = query,
+            page = page,
+            per_page = count
         ), callback = object : PixabayAPI.SearchImageCallback {
             override fun onSuccess(data: PixabayImagesModel.Response.SearchImages) {
                 callback.onSuccess(data = data.hits.toImagesModel())
