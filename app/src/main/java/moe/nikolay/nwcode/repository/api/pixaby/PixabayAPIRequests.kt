@@ -13,7 +13,22 @@ interface PixabayAPIRequests {
     @GET("/api/")
     fun searchImage(
         @Query("key") apiKey: String,
-        @Query("q") query: String
+        @Query("q") query: String,
+        @Query("lang") lang: String,
+        @Query("id") id: String,
+        @Query("image_type") image_type: String,
+        @Query("orientation") orientation: String,
+        @Query("category") category: String,
+        @Query("min_width") min_width: Int,
+        @Query("min_height") min_height: Int,
+        @Query("colors") colors: String,
+        @Query("editors_choice") editors_choice: Boolean,
+        @Query("safesearch") safesearch: Boolean,
+        @Query("order") order: String,
+        @Query("page") page: Int,
+        @Query("per_page") per_page: Int,
+        @Query("callback") callback: String,
+        @Query("pretty") pretty: Boolean,
     ): Call<PixabayImagesModel.Response.SearchImages>
 
     companion object {

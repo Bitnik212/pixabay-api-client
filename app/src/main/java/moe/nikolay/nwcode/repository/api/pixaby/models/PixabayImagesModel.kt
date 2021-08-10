@@ -2,27 +2,27 @@ package moe.nikolay.nwcode.repository.api.pixaby.models
 
 class PixabayImagesModel {
 
-    enum class Categories(val category: String) {
-        Backgrounds("backgrounds"),
-        Fashion("fashion"),
-        Nature("nature"),
-        Science("science"),
-        Education("education"),
-        Feelings("feelings"),
-        Health("health"),
-        People("people"),
-        Religion("religion"),
-        Places("places"),
-        Animals("animals"),
-        Industry("industry"),
-        Computer("computer"),
-        Food("food"),
-        Sports("sports"),
-        Transportation("transportation"),
-        Travel("travel"),
-        Buildings("buildings"),
-        Business("business"),
-        Music("music")
+    enum class Categories(val category_en: String, val category_ru: String, val id: Long) {
+        Backgrounds("backgrounds", "фоны", 1),
+        Fashion("fashion", "", 2),
+        Nature("nature", "", 3),
+        Science("science", "", 4),
+        Education("education", "", 5),
+        Feelings("feelings", "", 6),
+        Health("health", "", 7),
+        People("people", "", 8),
+        Religion("religion", "", 9),
+        Places("places", "", 10),
+        Animals("animals", "", 11),
+        Industry("industry", "", 12),
+        Computer("computer", "", 13),
+        Food("food", "", 14),
+        Sports("sports", "", 15),
+        Transportation("transportation", "", 16),
+        Travel("travel", "", 17),
+        Buildings("buildings", "", 18),
+        Business("business", "", 19),
+        Music("music", "", 20)
     }
 
     enum class Colors(val color: String) {
@@ -73,22 +73,22 @@ class PixabayImagesModel {
          * @param pretty Indent JSON output. This option should not be used in production. Accepted values: "true", "false" Default: "false"
          * **/
         data class SearchImages(
-            val key: String,
-            val q: String,
+//            val key: String,
+            val q: String = "",
             var lang: String = "en",
-            val id: String,
+            val id: String = "",
             var image_type: String = "all",
             var orientation: String = "all",
-            val category: String,
+            val category: String = "",
             var min_width: Int = 0,
             var min_height: Int = 0,
-            val colors: String,
+            val colors: String = "",
             var editors_choice: Boolean = false,
             var safesearch: Boolean = false,
             var order: String = "popular",
             var page: Int = 1,
             var per_page: Int = 20,
-            val callback: String,
+            val callback: String = "",
             var pretty: Boolean = false
         )
     }
