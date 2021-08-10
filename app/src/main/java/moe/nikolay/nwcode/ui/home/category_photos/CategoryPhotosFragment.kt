@@ -74,19 +74,10 @@ class CategoryPhotosFragment : Fragment() {
         }
 
         recyclerView.addOnScrollListener(object : PaginationScrollListener.Adapter(layoutManager) {
-//            override fun isLastPage(): Boolean {
-//                Log.d(TAG, "isLastPage")
-//                return false
-//            }
 
             override fun isFirstElement() {
                 mNowPage = 1
             }
-
-//            override fun isLoading(): Boolean {
-////                Log.d(TAG, "isLoading")
-//                return false
-//            }
 
             override fun loadMoreItems() {
                 mNowPage++
