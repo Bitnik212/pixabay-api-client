@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import moe.nikolay.nwcode.PaginationScrollListener
+import moe.nikolay.nwcode.R
 import moe.nikolay.nwcode.databinding.FragmentCategoryPhotosBinding
 import moe.nikolay.nwcode.repository.api.pixaby.models.PixabayImagesModel
 import moe.nikolay.nwcode.repository.images.models.ImageModel
@@ -69,7 +70,9 @@ class CategoryPhotosFragment : Fragment() {
 
         adapter.callback = object : ImagesAdapter.Callback {
             override fun onClick(image: ImageModel.Model) {
-                Log.d(TAG, "onClick: to large image")
+                val bundle = Bundle()
+                bundle.putLong("imageId", image.id)
+                navCantroller.navigate(R.id.detailImageFragment, bundle)
             }
         }
 

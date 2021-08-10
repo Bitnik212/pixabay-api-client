@@ -11,6 +11,10 @@ class ImagesRepository {
         fun onSuccess(data: List<ImageModel.Model>)
         fun onFailure(t: Throwable)
     }
+    interface ImageCallback {
+        fun onSuccess(data: ImageModel.Model)
+        fun onFailure(t: Throwable)
+    }
 
     private val TAG = this::class.java.simpleName
     private val api = PixabayAPI()
@@ -41,7 +45,7 @@ class ImagesRepository {
         api.searchImage(request = PixabayImagesModel.Request.SearchImages(
             q = query,
             page = page,
-            per_page = count
+            per_page = count,
         ), callback = object : PixabayAPI.SearchImageCallback {
             override fun onSuccess(data: PixabayImagesModel.Response.SearchImages) {
                 callback.onSuccess(data = data.hits.toImagesModel())
@@ -53,6 +57,21 @@ class ImagesRepository {
             }
         })
 
+    }
+
+    fun getImageById(imageId: Long, callback: ImageCallback) {
+        api.searchImage(request = PixabayImagesModel.Request.SearchImages(
+            id = imageId.toString()
+        ), callback = object : PixabayAPI.SearchImageCallback {
+            override fun onSuccess(data: PixabayImagesModel.Response.SearchImages) {
+                callback.onSuccess(data = data.hits.toImagesModel()[0])
+            }
+
+            override fun onFailure(t: Throwable) {
+                callback.onFailure(t)
+                Log.e(TAG, "getImagesBySearch: onFailure searchImage: $t")
+            }
+        })
     }
 
 }

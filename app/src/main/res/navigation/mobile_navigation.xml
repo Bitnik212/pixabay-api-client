@@ -24,5 +24,14 @@
     <fragment
         android:id="@+id/categoryPhotosFragment"
         android:name="moe.nikolay.nwcode.ui.home.category_photos.CategoryPhotosFragment"
-        android:label="CategoryPhotosFragment" />
+        android:label="Изображения по категории" >
+        <action
+            android:id="@+id/action_categoryPhotosFragment_to_detailImageFragment"
+            app:destination="@id/detailImageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailImageFragment"
+        android:name="moe.nikolay.nwcode.ui.home.category_photos.large_image.DetailImageFragment"
+        android:label="Изображение"
+        tools:layout="@layout/fragment_detail_image" />
 </navigation>
